@@ -57,7 +57,7 @@ app.use("/posts", postRoutes);
 app.use(express.static(path.resolve(__dirname, "./client/build")));
 
 // Route all other requests to the client's index.html
-app.get("*",'0.0.0.0', (req, res) => {
+app.get("*", (req, res) => {
   res.sendFile(path.resolve(__dirname, "./client/build/index.html"));
 });
 const PORT = process.env.PORT || 8181;
@@ -70,7 +70,7 @@ mongoose
   })
   .then((conn) => {
     console.log(`Connected to MongoDB Database ${conn.connection.host}`);
-    app.listen(PORT, () => console.log(`Server is listening on port ${PORT}`));
+    app.listen(PORT,'0.0.0.0', () => console.log(`Server is listening on port ${PORT}`));
   })
   .catch((error) => {
     console.log(`Error in MongoDB ${error}`);
